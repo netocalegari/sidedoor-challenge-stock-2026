@@ -5,7 +5,7 @@ defmodule StockManagement.Stock.Product do
   schema "products" do
     field :name, :string
     field :description, :string
-    field :quantity, :integer
+    field :quantity, :integer, default: 0
     field :price, :decimal
 
     timestamps(type: :utc_datetime)
