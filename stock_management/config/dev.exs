@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :stock_management, StockManagement.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "1234",
   hostname: "localhost",
   database: "stock_management_dev",
   stacktrace: true,
