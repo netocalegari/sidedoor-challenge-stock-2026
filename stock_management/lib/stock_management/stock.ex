@@ -103,6 +103,9 @@ defmodule StockManagement.Stock do
 
         {:error, changeset} ->
           Repo.rollback(changeset)
+
+        _ ->
+          Repo.rollback("Unexpected error")
       end
     end)
   end

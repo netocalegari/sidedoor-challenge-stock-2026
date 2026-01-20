@@ -68,8 +68,8 @@ Escolha o nível que melhor se adequa ao seu momento. **Não há problema em ent
 
 #### 2.1 Movimentações de Estoque
 
-- [ ] Registrar movimentações de **Entrada** e **Saída**
-- [ ] Cada movimentação deve conter:
+- [x] Registrar movimentações de **Entrada** e **Saída**
+- [x] Cada movimentação deve conter:
   - Produto relacionado
   - Tipo (`:entrada` ou `:saida`)
   - Quantidade (inteiro positivo)
@@ -78,10 +78,10 @@ Escolha o nível que melhor se adequa ao seu momento. **Não há problema em ent
 
 #### 2.2 Lógica de Estoque
 
-- [ ] **Entrada:** aumenta quantidade em estoque
-- [ ] **Saída:** diminui quantidade em estoque
-- [ ] **Bloquear** saída se quantidade for maior que estoque disponível
-- [ ] Atualizar estoque automaticamente após movimentação
+- [x] **Entrada:** aumenta quantidade em estoque
+- [x] **Saída:** diminui quantidade em estoque
+- [x] **Bloquear** saída se quantidade for maior que estoque disponível
+- [x] Atualizar estoque automaticamente após movimentação
 
 #### 2.3 Histórico de Movimentações
 
