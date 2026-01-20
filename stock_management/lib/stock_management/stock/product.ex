@@ -7,6 +7,7 @@ defmodule StockManagement.Stock.Product do
     field :description, :string
     field :quantity, :integer, default: 0
     field :price, :decimal
+    has_many :movements, StockManagement.Inventory.Movement
 
     timestamps(type: :utc_datetime)
   end
