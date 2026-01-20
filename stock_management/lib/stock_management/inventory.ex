@@ -32,7 +32,7 @@ defmodule StockManagement.Inventory do
       %Movements{}
 
   """
-  def get_movement!(id), do: raise "TODO"
+  def get_movement!(id), do: raise("TODO")
 
   @doc """
   Creates a movements.
@@ -47,51 +47,8 @@ defmodule StockManagement.Inventory do
 
   """
   def create_movement(attrs) do
-    raise "TODO"
-  end
-
-  @doc """
-  Updates a movements.
-
-  ## Examples
-
-      iex> update_movements(movements, %{field: new_value})
-      {:ok, %Movements{}}
-
-      iex> update_movements(movements, %{field: bad_value})
-      {:error, ...}
-
-  """
-  def update_movement(%Movement{} = movements, attrs) do
-    raise "TODO"
-  end
-
-  @doc """
-  Deletes a Movements.
-
-  ## Examples
-
-      iex> delete_movements(movements)
-      {:ok, %Movements{}}
-
-      iex> delete_movements(movements)
-      {:error, ...}
-
-  """
-  def delete_movement(%Movement{} = movements) do
-    raise "TODO"
-  end
-
-  @doc """
-  Returns a data structure for tracking movements changes.
-
-  ## Examples
-
-      iex> change_movements(movements)
-      %Todo{...}
-
-  """
-  def change_movement(%Movement{} = movements, _attrs \\ %{}) do
-    raise "TODO"
+    %Movement{}
+    |> Movement.changeset(attrs)
+    |> Repo.insert()
   end
 end
