@@ -33,26 +33,26 @@ Escolha o nível que melhor se adequa ao seu momento. **Não há problema em ent
 
 #### 1.1 Cadastro de Produtos
 
-- [ ] Nome (obrigatório, mínimo 3 caracteres)
-- [ ] Descrição (opcional)
-- [ ] Quantidade em estoque (obrigatório, número inteiro >= 0)
-- [ ] Preço unitário (opcional, decimal >= 0)
+- [x] Nome (obrigatório, mínimo 3 caracteres)
+- [x] Descrição (opcional)
+- [x] Quantidade em estoque (obrigatório, número inteiro >= 0)
+- [x] Preço unitário (opcional, decimal >= 0)
 
 #### 1.2 Listagem de Produtos
 
-- [ ] Exibir todos os produtos cadastrados
-- [ ] Mostrar: Nome, Descrição, Quantidade em estoque, Preço
+- [x] Exibir todos os produtos cadastrados
+- [x] Mostrar: Nome, Descrição, Quantidade em estoque, Preço
 
 #### 1.3 Edição e Exclusão
 
-- [ ] Permitir editar dados do produto
-- [ ] Permitir excluir produto
+- [x] Permitir editar dados do produto
+- [x] Permitir excluir produto
 
 #### 1.4 Validações Básicas
 
-- [ ] Validar campos obrigatórios
-- [ ] Não permitir quantidade negativa
-- [ ] Exibir mensagens de erro amigáveis
+- [x] Validar campos obrigatórios
+- [x] Não permitir quantidade negativa
+- [x] Exibir mensagens de erro amigáveis
 
 **Entregáveis do Nível 1:**
 
