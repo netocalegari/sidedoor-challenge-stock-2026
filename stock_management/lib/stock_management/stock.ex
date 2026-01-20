@@ -88,7 +88,7 @@ defmodule StockManagement.Stock do
           if product.quantity == updated_product.quantity do
             {:ok, updated_product}
           else
-            type = (product.quantity < updated_product.quantity && "entrada") || "saida"
+            type = (product.quantity < updated_product.quantity && :entrada) || :saida
 
             Inventory.create_movement(%{
               quantity: abs(updated_product.quantity - product.quantity),
@@ -118,7 +118,17 @@ defmodule StockManagement.Stock do
 
   """
   def delete_product(%Product{} = product) do
-    Repo.delete(product)
+    Repo.transact(fn ->
+      Inventory.create_movement(%{
+        quantity: product.quantity,
+        type: :saida,
+        product_id: product.id
+      })
+
+      product
+      |> Ecto.Changeset.change(quantity: 0, active: false)
+      |> Repo.update()
+    end)
   end
 
   @doc """
