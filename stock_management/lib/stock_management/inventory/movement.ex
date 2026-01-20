@@ -3,7 +3,7 @@ defmodule StockManagement.Inventory.Movement do
   import Ecto.Changeset
 
   schema "movements" do
-    field :type, :string
+    field :type, Ecto.Enum, values: [:entrada, :saida]
     field :quantity, :integer
     field :notes, :string
     belongs_to :product, StockManagement.Stock.Product
@@ -15,6 +15,7 @@ defmodule StockManagement.Inventory.Movement do
   def changeset(movement, attrs) do
     movement
     |> cast(attrs, [:type, :quantity, :notes, :product_id])
-    |> validate_required([:type, :quantity, :notes, :product_id])
+    |> validate_required([:type, :quantity, :product_id])
+    |> validate_inclusion(:type, [:entrada, :saida], message: "Tipo deve ser: :entrada ou :saida")
   end
 end
