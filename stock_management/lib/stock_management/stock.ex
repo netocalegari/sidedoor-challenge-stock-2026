@@ -60,10 +60,12 @@ defmodule StockManagement.Stock do
       if product.quantity > 0 do
         Inventory.create_movement(%{
           quantity: product.quantity,
-          type: "entrada",
+          type: :entrada,
           product_id: product.id
         })
       end
+
+      {:ok, product}
     end)
   end
 
