@@ -25,7 +25,9 @@ defmodule StockManagementWeb.MovementController do
         |> redirect(to: ~p"/movements/#{movement}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :new, changeset: changeset)
+        products = Stock.list_products()
+
+        render(conn, :new, changeset: changeset, products: products)
     end
   end
 

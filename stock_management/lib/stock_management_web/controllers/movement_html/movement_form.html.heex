@@ -1,29 +1,39 @@
 <.form :let={f} for={@changeset} action={@action}>
-  <div>
-    <select name="movement[product_id]">
-      <option value="">Selecione um produto</option>
-      <%= for product <- @products do %>
-        <option value={product.id} class="bg-black"><%= product.name %></option>
-      <% end %>
-    </select>
-  </div>
-  <div>
-    <label>Type</label>
+  <.input
+    field={f[:product_id]}
+    type="select"
+    label="Produto"
+    options={Enum.map(@products, &{&1.name, &1.id})}
+    prompt="Selecione um produto"
+  />
 
-    <label>
-      <input type="radio" name="movement[type]" value="entrada" />
-      Entrada
-    </label>
+  <.input
+    field={f[:type]}
+    type="select"
+    label="Tipo"
+    prompt="Selecione o tipo"
+    options={[
+      {"Entrada", :entrada},
+      {"Saída", :saida}
+    ]}
+  />
 
-    <label class="ml-4">
-      <input type="radio" name="movement[type]" value="saida" />
-      Saída
-    </label>
-  </div>
-  <.input field={f[:quantity]} type="number" label="Quantity" min="1"/>
-  <.input field={f[:notes]} type="textarea" label="Observação"/>
+
+  <.input
+    field={f[:quantity]}
+    type="number"
+    label="Quantidade"
+    min="1"
+  />
+
+  <.input
+    field={f[:notes]}
+    type="textarea"
+    label="Observação"
+  />
+
   <footer>
-    <.button variant="primary">Salvar Movementação</.button>
+    <.button variant="primary">Salvar Movimentação</.button>
     <.button :if={@return_to} href={@return_to}>Cancelar</.button>
   </footer>
 </.form>
