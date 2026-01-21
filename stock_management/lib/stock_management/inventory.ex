@@ -34,7 +34,7 @@ defmodule StockManagement.Inventory do
       %Movements{}
 
   """
-  def get_movement!(id), do: raise("TODO")
+  def get_movement!(id), do: Movement |> Repo.get!(id)
 
   @doc """
   Creates a movements.
