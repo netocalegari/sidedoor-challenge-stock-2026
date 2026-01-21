@@ -10,6 +10,7 @@ defmodule StockManagementWeb.MovementHTML do
   movement_html/movement_form.html.heex
   """
   attr :changeset, Ecto.Changeset, required: true
+  attr :products, :list, required: true
   attr :action, :string, required: true
   attr :return_to, :string, default: nil
 

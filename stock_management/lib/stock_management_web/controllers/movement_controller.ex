@@ -1,12 +1,20 @@
 defmodule StockManagementWeb.MovementController do
   use StockManagementWeb, :controller
 
+  alias StockManagement.Stock
   alias StockManagement.Inventory
   alias StockManagement.Inventory.Movement
 
   def index(conn, _params) do
     movements = Inventory.list_movements()
     render(conn, :index, movements: movements)
+  end
+
+  def new(conn, _params) do
+    changeset = Inventory.change_movement(%Movement{})
+    products = Stock.list_products()
+
+    render(conn, :new, changeset: changeset, products: products)
   end
 
   def create(conn, %{"movement" => movement_params}) do

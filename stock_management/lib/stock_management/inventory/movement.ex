@@ -16,6 +16,6 @@ defmodule StockManagement.Inventory.Movement do
     movement
     |> cast(attrs, [:type, :quantity, :notes, :product_id])
     |> validate_required([:type, :quantity, :product_id])
-    |> validate_inclusion(:type, [:entrada, :saida], message: "Tipo deve ser: :entrada ou :saida")
+    |> validate_inclusion(:type, [:entrada, :saida], message: "Tipo deve ser: entrada ou saida")
   end
 end

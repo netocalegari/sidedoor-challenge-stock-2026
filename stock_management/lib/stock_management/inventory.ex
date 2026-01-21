@@ -53,4 +53,8 @@ defmodule StockManagement.Inventory do
     |> Movement.changeset(attrs)
     |> Repo.insert()
   end
+
+  def change_movement(%Movement{} = movement, attrs \\ %{}) do
+    Movement.changeset(movement, attrs)
+  end
 end

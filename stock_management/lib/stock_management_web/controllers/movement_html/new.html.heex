@@ -1,0 +1,8 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    New Movement
+    <:subtitle>Fill this form with the movement details</:subtitle>
+  </.header>
+
+  <.movement_form changeset={@changeset} action={~p"/movements"} products={@products} return_to={~p"/movements"} />
+</Layouts.app>

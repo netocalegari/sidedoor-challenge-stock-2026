@@ -10,7 +10,7 @@
   </.header>
 
   <.list>
-    <:item title="Data">{@movement.inserted_at}</:item>
+    <:item title="Data">{Calendar.strftime(@movement.inserted_at, "%d/%m/%Y | %H:%M")}</:item>
     <:item title="Type">{@movement.type}</:item>
     <:item title="Quantity">{@movement.quantity}</:item>
     <:item title="Observação">{@movement.notes}</:item>
