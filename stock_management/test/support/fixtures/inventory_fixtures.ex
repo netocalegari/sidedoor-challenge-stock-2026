@@ -17,4 +17,18 @@ defmodule StockManagement.InventoryFixtures do
 
     movements
   end
+
+  @doc """
+  Generate a movement.
+  """
+  def movement_fixture(attrs \\ %{}) do
+    {:ok, movement} =
+      attrs
+      |> Enum.into(%{
+        dummy: "some dummy"
+      })
+      |> StockManagement.Inventory.create_movement()
+
+    movement
+  end
 end

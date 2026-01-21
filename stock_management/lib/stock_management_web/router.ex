@@ -20,6 +20,7 @@ defmodule StockManagementWeb.Router do
     get "/", PageController, :home
 
     resources "/products", ProductController
+    resources "/movements", MovementController, only: [:index, :show, :create]
   end
 
   # Other scopes may use custom stacks.

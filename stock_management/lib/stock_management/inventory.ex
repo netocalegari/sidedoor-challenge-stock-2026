@@ -18,7 +18,9 @@ defmodule StockManagement.Inventory do
 
   """
   def list_movements do
-    raise "TODO"
+    Movement
+    |> order_by([m], desc: m.inserted_at)
+    |> Repo.all()
   end
 
   @doc """

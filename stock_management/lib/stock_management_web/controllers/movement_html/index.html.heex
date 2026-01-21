@@ -1,0 +1,23 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Listing Movements
+    <:actions>
+      <.button href={~p"/movements/new"}>
+        <.icon name="hero-plus" /> New Movement
+      </.button>
+    </:actions>
+  </.header>
+
+  <.table id="movements" rows={@movements} row_click={&JS.navigate(~p"/movements/#{&1}")}>
+    <:col :let={movement} label="Type">{movement.type}</:col>
+    <:col :let={movement} label="Product ID">{movement.product_id}</:col>
+    <:col :let={movement} label="Data">{Calendar.strftime(movement.inserted_at, "%d/%m/%Y | %H:%M")}</:col>
+    <:col :let={movement} label="Quantity">{movement.quantity}</:col>
+    <:col :let={movement} label="Observação">{movement.notes}</:col>
+    <:action :let={movement}>
+      <div class="sr-only">
+        <.link navigate={~p"/movements/#{movement}"}>Show</.link>
+      </div>
+    </:action>
+  </.table>
+</Layouts.app>

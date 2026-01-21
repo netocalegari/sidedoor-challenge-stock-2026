@@ -1,0 +1,18 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Movement {@movement.id}
+    <:subtitle>This is a movement record from your database.</:subtitle>
+    <:actions>
+      <.button navigate={~p"/movements"}>
+        <.icon name="hero-arrow-left" />
+      </.button>
+    </:actions>
+  </.header>
+
+  <.list>
+    <:item title="Data">{@movement.inserted_at}</:item>
+    <:item title="Type">{@movement.type}</:item>
+    <:item title="Quantity">{@movement.quantity}</:item>
+    <:item title="Observação">{@movement.notes}</:item>
+  </.list>
+</Layouts.app>
