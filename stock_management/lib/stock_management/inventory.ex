@@ -53,34 +53,36 @@ defmodule StockManagement.Inventory do
     Repo.transaction(fn ->
       changeset = Movement.changeset(%Movement{}, attrs)
 
-      if attrs["product_id"] == "" do
+      if attrs[:product_id] == "" do
         Repo.rollback(Map.put(changeset, :action, :insert))
       end
 
-      product = Stock.get_product!(attrs["product_id"])
+      product = Stock.get_product!(attrs[:product_id])
 
       qty =
-        case attrs["quantity"] do
+        case attrs[:quantity] do
           "" -> 0
           nil -> 0
-          q -> String.to_integer(q)
+          q when is_binary(q) -> String.to_integer(q)
+          q when is_integer(q) -> q
+          _ -> 0
         end
 
       cond do
         qty <= 0 ->
           Repo.rollback(Map.put(changeset, :action, :insert))
 
-        attrs["type"] == "saida" and qty > product.quantity ->
+        attrs[:type] == :saida and qty > product.quantity ->
           new_cs = Ecto.Changeset.add_error(changeset, :quantity, "Estoque insuficiente")
 
           Repo.rollback(Map.put(new_cs, :action, :insert))
 
         true ->
-          case attrs["type"] do
-            "entrada" ->
+          case attrs[:type] do
+            :entrada ->
               Stock.update_product(product, %{quantity: product.quantity + qty})
 
-            "saida" ->
+            :saida ->
               Stock.update_product(product, %{quantity: product.quantity - qty})
 
             _ ->
