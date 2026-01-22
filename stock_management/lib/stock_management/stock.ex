@@ -19,7 +19,10 @@ defmodule StockManagement.Stock do
 
   """
   def list_products do
-    Repo.all(Product)
+    products = Repo.all(Product)
+    active_products = Enum.filter(products, fn product -> product.active end)
+
+    active_products
   end
 
   @doc """
