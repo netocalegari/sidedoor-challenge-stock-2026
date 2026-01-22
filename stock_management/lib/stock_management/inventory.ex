@@ -71,7 +71,9 @@ defmodule StockManagement.Inventory do
           Repo.rollback(Map.put(changeset, :action, :insert))
 
         attrs["type"] == "saida" and qty > product.quantity ->
-          Repo.rollback(Map.put(changeset, :action, :insert))
+          new_cs = Ecto.Changeset.add_error(changeset, :quantity, "Estoque insuficiente")
+
+          Repo.rollback(Map.put(new_cs, :action, :insert))
 
         true ->
           case attrs["type"] do
