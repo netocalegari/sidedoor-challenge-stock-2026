@@ -38,8 +38,7 @@ defmodule StockManagementWeb.MovementController do
 
         render(conn, :new,
           changeset: changeset,
-          products: products,
-          error_message: "Um produto precisa ser selecionado."
+          products: products
         )
 
       {:error, :insufficient_stock} ->
@@ -51,8 +50,7 @@ defmodule StockManagementWeb.MovementController do
 
         render(conn, :new,
           changeset: changeset,
-          products: products,
-          error_message: "Quantidade insuficiente em estoque."
+          products: products
         )
 
       {:error, :invalid_type} ->
@@ -64,8 +62,7 @@ defmodule StockManagementWeb.MovementController do
 
         render(conn, :new,
           changeset: changeset,
-          products: products,
-          error_message: "Tipo de movimentação inválida."
+          products: products
         )
 
       {:error, :invalid_quantity} ->
@@ -77,8 +74,7 @@ defmodule StockManagementWeb.MovementController do
 
         render(conn, :new,
           changeset: changeset,
-          products: products,
-          error_message: "Quantidade inválida."
+          products: products
         )
     end
   end
