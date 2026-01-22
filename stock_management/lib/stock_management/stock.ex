@@ -57,14 +57,6 @@ defmodule StockManagement.Stock do
         |> Product.changeset(attrs)
         |> Repo.insert()
 
-      if product.quantity > 0 do
-        Inventory.create_movement(%{
-          quantity: product.quantity,
-          type: :entrada,
-          product_id: product.id
-        })
-      end
-
       {:ok, product}
     end)
   end
@@ -82,32 +74,10 @@ defmodule StockManagement.Stock do
 
   """
   def update_product(%Product{} = product, attrs) do
-    Repo.transact(fn ->
-      case product
-           |> Product.changeset(attrs)
-           |> Repo.update() do
-        {:ok, updated_product} ->
-          if product.quantity == updated_product.quantity do
-            {:ok, updated_product}
-          else
-            type = (product.quantity < updated_product.quantity && :entrada) || :saida
-
-            Inventory.create_movement(%{
-              quantity: abs(updated_product.quantity - product.quantity),
-              type: type,
-              product_id: product.id
-            })
-
-            {:ok, updated_product}
-          end
-
-        {:error, changeset} ->
-          Repo.rollback(changeset)
-
-        _ ->
-          Repo.rollback("Unexpected error")
-      end
-    end)
+    product
+    |> Product.changeset(attrs)
+    |> Repo.update do
+    end
   end
 
   @doc """

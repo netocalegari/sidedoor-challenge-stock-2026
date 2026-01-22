@@ -28,6 +28,58 @@ defmodule StockManagementWeb.MovementController do
         products = Stock.list_products()
 
         render(conn, :new, changeset: changeset, products: products)
+
+      {:error, :missing_product_id} ->
+        products = Stock.list_products()
+
+        changeset =
+          Inventory.change_movement(%Movement{}, movement_params)
+          |> Map.put(:action, :insert)
+
+        render(conn, :new,
+          changeset: changeset,
+          products: products,
+          error_message: "Um produto precisa ser selecionado."
+        )
+
+      {:error, :insufficient_stock} ->
+        products = Stock.list_products()
+
+        changeset =
+          Inventory.change_movement(%Movement{}, movement_params)
+          |> Map.put(:action, :insert)
+
+        render(conn, :new,
+          changeset: changeset,
+          products: products,
+          error_message: "Quantidade insuficiente em estoque."
+        )
+
+      {:error, :invalid_type} ->
+        products = Stock.list_products()
+
+        changeset =
+          Inventory.change_movement(%Movement{}, movement_params)
+          |> Map.put(:action, :insert)
+
+        render(conn, :new,
+          changeset: changeset,
+          products: products,
+          error_message: "Tipo de movimentação inválida."
+        )
+
+      {:error, :invalid_quantity} ->
+        products = Stock.list_products()
+
+        changeset =
+          Inventory.change_movement(%Movement{}, movement_params)
+          |> Map.put(:action, :insert)
+
+        render(conn, :new,
+          changeset: changeset,
+          products: products,
+          error_message: "Quantidade inválida."
+        )
     end
   end
 

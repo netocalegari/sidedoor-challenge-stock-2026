@@ -4,6 +4,7 @@ defmodule StockManagement.Inventory do
   """
 
   import Ecto.Query, warn: false
+  alias StockManagement.Stock
   alias StockManagement.Repo
 
   alias StockManagement.Inventory.Movement
@@ -49,9 +50,46 @@ defmodule StockManagement.Inventory do
 
   """
   def create_movement(attrs) do
-    %Movement{}
-    |> Movement.changeset(attrs)
-    |> Repo.insert()
+    Repo.transaction(fn ->
+      changeset = Movement.changeset(%Movement{}, attrs)
+
+      if attrs["product_id"] == "" do
+        Repo.rollback(Map.put(changeset, :action, :insert))
+      end
+
+      product = Stock.get_product!(attrs["product_id"])
+
+      qty =
+        case attrs["quantity"] do
+          "" -> 0
+          nil -> 0
+          q -> String.to_integer(q)
+        end
+
+      cond do
+        qty <= 0 ->
+          Repo.rollback(Map.put(changeset, :action, :insert))
+
+        attrs["type"] == "saida" and qty > product.quantity ->
+          Repo.rollback(Map.put(changeset, :action, :insert))
+
+        true ->
+          case attrs["type"] do
+            "entrada" ->
+              Stock.update_product(product, %{quantity: product.quantity + qty})
+
+            "saida" ->
+              Stock.update_product(product, %{quantity: product.quantity - qty})
+
+            _ ->
+              Repo.rollback(Map.put(changeset, :action, :insert))
+          end
+
+          %Movement{}
+          |> Movement.changeset(attrs)
+          |> Repo.insert!()
+      end
+    end)
   end
 
   def change_movement(%Movement{} = movement, attrs \\ %{}) do
