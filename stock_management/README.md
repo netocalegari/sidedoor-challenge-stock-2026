@@ -85,9 +85,9 @@ Escolha o nível que melhor se adequa ao seu momento. **Não há problema em ent
 
 #### 2.3 Histórico de Movimentações
 
-- [ ] Listar todas as movimentações de um produto
-- [ ] Mostrar: Data, Tipo, Quantidade, Observação
-- [ ] Ordenar por data (mais recente primeiro)
+- [x] Listar todas as movimentações de um produto
+- [x] Mostrar: Data, Tipo, Quantidade, Observação
+- [x] Ordenar por data (mais recente primeiro)
 
 **Entregáveis do Nível 2:**
 

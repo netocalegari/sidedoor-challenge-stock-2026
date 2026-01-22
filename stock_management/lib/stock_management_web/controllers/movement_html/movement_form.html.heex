@@ -2,7 +2,7 @@
   <.input
     field={f[:product_id]}
     type="select"
-    label="Produto"
+    label="Product"
     options={Enum.map(@products, &{&1.name, &1.id})}
     prompt="Selecione um produto"
   />
@@ -10,7 +10,7 @@
   <.input
     field={f[:type]}
     type="select"
-    label="Tipo"
+    label="Type"
     prompt="Selecione o tipo"
     options={[
       {"Entrada", :entrada},
@@ -22,18 +22,18 @@
   <.input
     field={f[:quantity]}
     type="number"
-    label="Quantidade"
+    label="Quantity"
     min="1"
   />
 
   <.input
     field={f[:notes]}
     type="textarea"
-    label="Observação"
+    label="Observation"
   />
 
   <footer>
-    <.button variant="primary">Salvar Movimentação</.button>
-    <.button :if={@return_to} href={@return_to}>Cancelar</.button>
+    <.button variant="primary">Save Movement</.button>
+    <.button :if={@return_to} href={@return_to}>Cancel</.button>
   </footer>
 </.form>
