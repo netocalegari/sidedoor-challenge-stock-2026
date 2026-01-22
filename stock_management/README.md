@@ -179,7 +179,7 @@ Escolha **pelo menos 2** das funcionalidades abaixo:
 
 Ao final do desafio, adicione uma seção com:
 
-- [ ] **Como rodar a aplicação** (comandos necessários)
+- [x] **Como rodar a aplicação** (comandos necessários)
 - [ ] **Nível entregue** (1, 2 ou 3)
 - [ ] **O que você aprendeu**
 - [ ] **Principais desafios enfrentados**
@@ -280,28 +280,19 @@ Ao terminar, responda:
 
 ### Como Rodar
 
-# StockManagement
+Certifique-se de possuir Postgresql instalado na sua máquina.
+Em `config/dev.exs` configure os dados necessários para se conectar com o banco de dados
 
-To start your Phoenix server:
-
-- Run `mix setup` to install and setup dependencies
-- Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-- Official website: https://www.phoenixframework.org/
-- Guides: https://hexdocs.pm/phoenix/overview.html
-- Docs: https://hexdocs.pm/phoenix
-- Forum: https://elixirforum.com/c/phoenix-forum
-- Source: https://github.com/phoenixframework/phoenix
+Rode os seguintes comandos:
 
 ```bash
-# Seus comandos aqui
+cd stock_management
+mix ecto.create
+mix ecto.migrate
+mix phx.server
 ```
+
+A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http://localhost:4000).
 
 ### Nível Entregue
 
