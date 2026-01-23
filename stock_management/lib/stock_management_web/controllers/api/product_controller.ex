@@ -21,7 +21,7 @@ defmodule StockManagementWeb.Api.ProductController do
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> put_view(StockManagementWeb.Api.ChangesetView)
+        |> put_view(StockManagementWeb.ErrorJSON)
         |> render("error.json", changeset: changeset)
     end
   end

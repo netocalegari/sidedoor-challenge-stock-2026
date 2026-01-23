@@ -54,14 +54,9 @@ defmodule StockManagement.Stock do
 
   """
   def create_product(attrs) do
-    Repo.transact(fn ->
-      {:ok, product} =
-        %Product{}
-        |> Product.changeset(attrs)
-        |> Repo.insert()
-
-      {:ok, product}
-    end)
+    %Product{}
+    |> Product.changeset(attrs)
+    |> Repo.insert()
   end
 
   @doc """
