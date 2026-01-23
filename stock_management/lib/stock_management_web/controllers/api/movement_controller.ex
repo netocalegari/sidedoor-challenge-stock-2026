@@ -1,0 +1,2 @@
+defmodule StockManagementWeb.Api.MovementController do
+end
