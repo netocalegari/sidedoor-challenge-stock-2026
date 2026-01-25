@@ -30,4 +30,12 @@ defmodule StockManagementWeb.Api.ProductController do
       |> render(:show, product: product)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    product = StockManagement.Stock.get_product!(id)
+
+    with {:ok, _product} <- StockManagement.Stock.delete_product(product) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
