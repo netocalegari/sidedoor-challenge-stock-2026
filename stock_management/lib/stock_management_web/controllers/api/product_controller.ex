@@ -20,4 +20,14 @@ defmodule StockManagementWeb.Api.ProductController do
       |> render(:show, product: product)
     end
   end
+
+  def update(conn, %{"id" => id, "product" => product_params}) do
+    product = StockManagement.Stock.get_product!(id)
+
+    with {:ok, product} <- StockManagement.Stock.update_product(product, product_params) do
+      conn
+      |> put_status(:ok)
+      |> render(:show, product: product)
+    end
+  end
 end
