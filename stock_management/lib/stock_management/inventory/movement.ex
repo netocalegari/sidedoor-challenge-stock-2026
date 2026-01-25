@@ -15,7 +15,9 @@ defmodule StockManagement.Inventory.Movement do
   def changeset(movement, attrs) do
     movement
     |> cast(attrs, [:type, :quantity, :notes, :product_id])
-    |> validate_required([:type, :quantity, :product_id], message: "Este campo é obrigatório")
+    |> validate_required([:type, :quantity, :product_id],
+      message: "Campos [type, quantity, product_id] são obrigatórios"
+    )
     |> validate_number(:quantity,
       greater_than: 0,
       message: "A quantidade deve ser maior que zero"

@@ -53,45 +53,53 @@ defmodule StockManagement.Inventory do
     Repo.transaction(fn ->
       changeset = Movement.changeset(%Movement{}, attrs)
 
-      if attrs[:product_id] == "" do
+      if changeset.valid? == false do
         Repo.rollback(Map.put(changeset, :action, :insert))
       end
 
-      product = Stock.get_product!(attrs[:product_id])
+      movement = Ecto.Changeset.apply_changes(changeset)
 
-      qty =
-        case attrs[:quantity] do
-          "" -> 0
-          nil -> 0
-          q when is_binary(q) -> String.to_integer(q)
-          q when is_integer(q) -> q
-          _ -> 0
+      product =
+        case Stock.get_product!(movement.product_id) do
+          nil ->
+            Repo.rollback(:product_not_found)
+
+          product ->
+            product
         end
+
+      qty = movement.quantity
+      type = movement.type
 
       cond do
         qty <= 0 ->
-          Repo.rollback(Map.put(changeset, :action, :insert))
+          Repo.rollback(
+            Ecto.Changeset.add_error(changeset, :quantity, "Quantidade deve ser maior que zero")
+            |> Map.put(:action, :insert)
+          )
 
-        attrs[:type] == :saida and qty > product.quantity ->
+        type == :saida and qty > product.quantity ->
           new_cs = Ecto.Changeset.add_error(changeset, :quantity, "Estoque insuficiente")
 
           Repo.rollback(Map.put(new_cs, :action, :insert))
 
         true ->
-          case attrs[:type] do
-            :entrada ->
-              Stock.update_product(product, %{quantity: product.quantity + qty})
+          new_quantity =
+            case type do
+              :entrada ->
+                product.quantity + qty
 
-            :saida ->
-              Stock.update_product(product, %{quantity: product.quantity - qty})
+              :saida ->
+                product.quantity - qty
 
-            _ ->
-              Repo.rollback(Map.put(changeset, :action, :insert))
-          end
+              _ ->
+                Repo.rollback(Map.put(changeset, :action, :insert))
+            end
 
-          %Movement{}
-          |> Movement.changeset(attrs)
-          |> Repo.insert!()
+          {:ok, _product} =
+            Stock.update_product(product, %{quantity: new_quantity})
+
+          Repo.insert!(changeset)
       end
     end)
   end
