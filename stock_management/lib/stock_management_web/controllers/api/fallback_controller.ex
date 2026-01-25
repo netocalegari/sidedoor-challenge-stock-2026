@@ -4,7 +4,7 @@ defmodule StockManagementWeb.Api.FallbackController do
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> put_view(StockManagementWeb.Api.ErrorJSON)
+    |> put_view(StockManagementWeb.Api.ChangesetJSON)
     |> render(:error, changeset: changeset)
   end
 
@@ -15,21 +15,7 @@ defmodule StockManagementWeb.Api.FallbackController do
     |> render(:"400")
   end
 
-  def call(conn, {:error, :missing_product_id}) do
-    conn
-    |> put_status(:bad_request)
-    |> put_view(StockManagementWeb.Api.ErrorJSON)
-    |> render(:"400")
-  end
-
-  def call(conn, {:error, :missing_product_id}) do
-    conn
-    |> put_status(:bad_request)
-    |> put_view(StockManagementWeb.Api.ErrorJSON)
-    |> render(:"400")
-  end
-
-  def call(conn, {:error, :missing_product_id}) do
+  def call(conn, {:error, :insufficient_stock}) do
     conn
     |> put_status(:bad_request)
     |> put_view(StockManagementWeb.Api.ErrorJSON)
