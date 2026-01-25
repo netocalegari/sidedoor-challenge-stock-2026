@@ -27,7 +27,7 @@ defmodule StockManagementWeb.Router do
     pipe_through :api
 
     resources "/products", Api.ProductController, except: [:new, :edit]
-    resources "/movements", Api.MovementController, only: [:index, :show]
+    resources "/movements", Api.MovementController, only: [:index, :show, :create]
   end
 
   # Other scopes may use custom stacks.
