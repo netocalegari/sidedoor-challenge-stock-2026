@@ -2,6 +2,6 @@ defmodule StockManagementWeb.PageController do
   use StockManagementWeb, :controller
 
   def home(conn, _params) do
-    render(conn, :home)
+    redirect(conn, to: ~p"/products")
   end
 end
