@@ -539,7 +539,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 
 ### O que achei de trabalhar com Elixir
 
-Divertido. Apesar de seguir um paradigma funcional, fiquei surpreso pelo quanto programar nele me pareceu OOP. Talvez isso se dê pela minha visão e hábitos com linguagens OOP e/ou pelo padrão MVC adotado, mas achei isso surpreendente. Esperava que fosse parecer algo de "outro mundo".
+> Divertido. Apesar de seguir um paradigma funcional, fiquei surpreso pelo quanto programar nele me pareceu OOP. Talvez isso se dê pela minha visão e hábitos com linguagens OOP e/ou pelo padrão MVC adotado, mas achei isso surpreendente. Esperava que fosse parecer algo de "outro mundo".
 
 ### O que Aprendi
 
