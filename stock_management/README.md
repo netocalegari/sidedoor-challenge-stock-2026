@@ -106,7 +106,7 @@ Escolha **pelo menos 2** das funcionalidades abaixo:
 #### 3.1 API REST
 
 - [x] Criar endpoints JSON para produtos e movimentações
-- [ ] Documentar os endpoints no README
+- [x] Documentar os endpoints no README
 - [x] Implementar respostas de erro padronizadas
 
 #### 3.2 Testes Automatizados
@@ -171,7 +171,7 @@ Escolha **pelo menos 2** das funcionalidades abaixo:
 
 ### Repositório
 
-- [ ] Projeto publicado no **GitHub**
+- [x] Projeto publicado no **GitHub**
 - [ ] Código limpo e organizado
 - [ ] Commits frequentes e com mensagens descritivas
 
@@ -274,7 +274,7 @@ Em `config/dev.exs` configure os dados necessários para se conectar com o banco
 ```
 config :stock_management, StockManagement.Repo,
   username: "seu_username", <- alterar aqui
-  password: "Sua_senha", <- alterar aqui
+  password: "sua_senha", <- alterar aqui
   hostname: "localhost",
   database: "stock_management_dev",
   [...]
@@ -291,6 +291,246 @@ mix phx.server
 ```
 
 A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http://localhost:4000).
+
+### Endpoints
+
+> Base URL: `http://localhost:4000`
+
+#### API Rest
+
+##### Products `(/api/products)`
+
+> Listar Produtos  
+> **GET** `/api/products`
+
+**Resposta - 200 OK**
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Teclado Razer",
+      "description": "Com rgb",
+      "quantity": 10,
+      "price": 1000
+    }
+  ]
+}
+```
+
+> Buscar produto por ID  
+> **GET** `api/products/:id`
+
+**Resposta - 200 OK**
+
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "Teclado Razer",
+    "description": "Com rgb",
+    "quantity": 10,
+    "price": 1000
+  }
+}
+```
+
+**Erro - 404 Not Found**
+
+```json
+{
+  "errors": {
+    "detail": "Not Found"
+  }
+}
+```
+
+> Criar Produto  
+> **POST** `api/products`
+> **Body**
+
+```json
+{
+  "name": "Teclado Razer",
+  "description": "com rgb",
+  "quantity": 10,
+  "price": 1000
+}
+```
+
+**Resposta - 201 CREATED**
+
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "Teclado Razer",
+    "description": "Com rgb",
+    "quantity": 10,
+    "price": 1000
+  }
+}
+```
+
+**Erro - 422 Unprocessable Entity**
+
+```json
+{
+  "errors": {
+    "name": ["Campo [name, quantity] obrigatório"]
+  }
+}
+```
+
+> Atualizar Produto  
+> **PATCH** `api/products`
+> **Body**
+
+```json
+{
+  "name": "Teclado Logitech"
+}
+```
+
+**Resposta - 200 OK**
+
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "Teclado Logitech",
+    "description": "Com rgb",
+    "quantity": 10,
+    "price": 1000
+  }
+}
+```
+
+**Erro - 404 Not Found**
+
+```json
+{
+  "errors": {
+    "detail": "Not Found"
+  }
+}
+```
+
+**Erro - 422 Unprocessable Entity**
+
+```json
+{
+  "errors": {
+    "name": ["Campo [name, quantity] obrigatório"]
+  }
+}
+```
+
+> Deletar Produto  
+> **DELETE** `api/products`
+
+**Resposta - 204 No Content**
+
+**Erro - 404 Not Found**
+
+```json
+{
+  "errors": {
+    "detail": "Not Found"
+  }
+}
+```
+
+##### Moviments `(/api/movements)`
+
+> Listar Movements  
+> **GET** `/api/moviments`
+
+**Resposta - 200 OK**
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "type": "entrada",
+      "quantity": 10,
+      "notes": "Compra inicial",
+      "product_id": 1,
+      "inserted_at": "2026-01-26T02:38:31Z",
+      "updated_at": "2026-01-26T02:38:31Z"
+    }
+  ]
+}
+```
+
+> Buscar movimentos por ID  
+> **GET** `/api/moviments/:id`
+
+**Resposta - 200 OK**
+
+```json
+{
+  "data": {
+    "id": 1,
+    "type": "saida",
+    "quantity": 5,
+    "notes": "Venda",
+    "product_id": 1,
+    "inserted_at": "2026-01-26T02:38:31Z",
+    "updated_at": "2026-01-26T02:38:31Z"
+  }
+}
+```
+
+> Criar Movement  
+> **POST** `api/movements`
+> **Body**
+
+```json
+{
+  "product_id": 1,
+  "type": "saida",
+  "quantity": 5,
+  "notes": "Venda balcão"
+}
+```
+
+**Resposta - 201 CREATED**
+
+```json
+{
+  "data": {
+    "id": 2,
+    "type": "saida",
+    "quantity": 5,
+    "notes": "Venda balcão",
+    "product_id": 1
+  }
+}
+```
+
+**Erro - 422 Unprocessable Entity**
+
+````json
+{
+  "errors": {
+    "quantity": ["Estoque insuficiente"]
+  }
+}
+
+**Erro - 422 Unprocessable Entity**
+
+```json
+{
+	"errors": {
+		"quantity": [
+			"A quantidade deve ser maior que zero"
+		]
+	}
+}
+````
 
 ### Nível Entregue
 
