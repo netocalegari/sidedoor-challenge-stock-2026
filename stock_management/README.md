@@ -287,6 +287,7 @@ Rode os seguintes comandos:
 
 ```bash
 cd stock_management
+mix deps.get
 mix ecto.create
 mix ecto.migrate
 mix phx.server
