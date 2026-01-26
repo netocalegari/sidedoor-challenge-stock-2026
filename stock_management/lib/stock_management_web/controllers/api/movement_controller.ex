@@ -10,8 +10,9 @@ defmodule StockManagementWeb.Api.MovementController do
   end
 
   def show(conn, %{"id" => id}) do
-    movement = Inventory.get_movement!(id)
-    render(conn, :show, movement: movement)
+    with {:ok, movement} <- Inventory.get_movement(id) do
+      render(conn, :show, movement: movement)
+    end
   end
 
   def create(conn, movement_params) do

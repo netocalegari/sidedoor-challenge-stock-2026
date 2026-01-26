@@ -37,6 +37,13 @@ defmodule StockManagement.Inventory do
   """
   def get_movement!(id), do: Movement |> Repo.get!(id)
 
+  def get_movement(id) do
+    case Repo.get(Movement, id) do
+      nil -> {:error, :not_found}
+      movement -> {:ok, movement}
+    end
+  end
+
   @doc """
   Creates a movements.
 
