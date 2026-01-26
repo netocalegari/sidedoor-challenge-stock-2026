@@ -513,24 +513,23 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 
 **Erro - 422 Unprocessable Entity**
 
-````json
+```json
 {
   "errors": {
     "quantity": ["Estoque insuficiente"]
   }
 }
+```
 
 **Erro - 422 Unprocessable Entity**
 
 ```json
 {
-	"errors": {
-		"quantity": [
-			"A quantidade deve ser maior que zero"
-		]
-	}
+  "errors": {
+    "quantity": ["A quantidade deve ser maior que zero"]
+  }
 }
-````
+```
 
 ### Nível Entregue
 
@@ -561,3 +560,7 @@ Divertido. Apesar de seguir um paradigma funcional, fiquei surpreso pelo quanto 
 > Padronizaria melhor o código. Em alguns momentos eu estava lendo nomes do teste em ingles (type, product, etc) e passando os para o código, mas outros momentos me peguei confuso com a utilização de ingles ou portugues (com algumas mensagens estando em portgues, outras em ingles.)
 
 ---
+
+```
+
+```
