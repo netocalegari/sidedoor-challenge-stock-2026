@@ -180,10 +180,10 @@ Escolha **pelo menos 2** das funcionalidades abaixo:
 Ao final do desafio, adicione uma seção com:
 
 - [x] **Como rodar a aplicação** (comandos necessários)
-- [ ] **Nível entregue** (1, 2 ou 3)
-- [ ] **O que você aprendeu**
-- [ ] **Principais desafios enfrentados**
-- [ ] **O que faria diferente com mais tempo**
+- [x] **Nível entregue** (1, 2 ou 3)
+- [x] **O que você aprendeu**
+- [x] **Principais desafios enfrentados**
+- [x] **O que faria diferente com mais tempo**
 
 ---
 
@@ -260,32 +260,29 @@ Não hesite em perguntar! Saber fazer perguntas é uma habilidade importante.
 
 ---
 
-## Reflexão Final (Opcional, mas recomendada)
-
-Ao terminar, responda:
-
-- O que você achou de trabalhar com Elixir?
-- Qual foi o momento mais desafiador?
-- O que você faria diferente se começasse de novo?
-
----
-
 **Boa sorte! Estamos ansiosos para ver sua solução!**
 
 ---
 
 ## Sua Solução
 
-> _Preencha esta seção ao finalizar o desafio_
-
 ### Como Rodar
 
 Certifique-se de possuir Postgresql instalado na sua máquina.
 Em `config/dev.exs` configure os dados necessários para se conectar com o banco de dados
 
+```
+config :stock_management, StockManagement.Repo,
+  username: "seu_username", <- alterar aqui
+  password: "Sua_senha", <- alterar aqui
+  hostname: "localhost",
+  database: "stock_management_dev",
+  [...]
+```
+
 Rode os seguintes comandos:
 
-```bash
+```
 cd stock_management
 mix deps.get
 mix ecto.create
@@ -298,17 +295,29 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 ### Nível Entregue
 
 - [ ] Nível 1 (Básico)
-- [ ] Nível 2 (Intermediário)
+- [x] Nível 2 (Intermediário) -> nível 3 foi iniciado com a API REST, mas foi o item desse nível que pude finalizar.
 - [ ] Nível 3 (Avançado)
+
+### O que achei de trabalhar com Elixir
+
+Divertido. Apesar de seguir um paradigma funcional, fiquei surpreso pelo quanto programar nele me pareceu OOP. Talvez isso se dê pela minha visão e hábitos com linguagens OOP e/ou pelo padrão MVC adotado, mas achei isso surpreendente. Esperava que fosse parecer algo de "outro mundo".
 
 ### O que Aprendi
 
-> _Escreva aqui..._
+> Elixir como um todo (tanto a linguagem em sí como todo seu ecossistema) são coisas completamente novas para mim, aprendi muitas coisas sobre a própria linguagem. Suas convenções de escrita, sintaxe, roteamento. Terminologia de funções "render/3", "render/4"
+> Fluxo de dados: a maneira que o Elixir manipula e recebe dados em diferentes camadas. Controller -> Context -> Repo.
+> Manipulação e validações de formulários com changeset
+> Tratamento de erros centralizados com FallbackController
 
 ### Principais Desafios
 
-> _Escreva aqui..._
+> O tratamento de erros e as condicionais foram pra mim os pontos de mais dificuldade.
+> Implementar e entender o padrão/esquema da utilização de um fallback centralizado para tratamento de erros foi mais dificil do que eu esperava. O módulo FallbackController e como funciona em si não foi tão complicado, mas entender a maneira de jogar a exceção, sim. Principalmente porque isso acabou se misturando bastante com o uso de condicionais em Elixir que acabam sendo diferentes de como era em JS. A utilização de Cond, With, Case, acabou deixando um pouco confuso para mim até conseguir entender melhor.
 
-### O que Faria Diferente
+### O que faria diferente com mais tempo
 
-> _Escreva aqui..._
+> Sendo algo novo para mim, achei mais importante deixar a aplicação o mais funcional e utilizavel possível, focando nas regras de negócio, banco de dados, relacionamentos.
+> Conhecendo melhor agora, gostaria de poder dar mais atenção ao frontend e finalizar o nível 3 do teste.
+> Padronizaria melhor o código. Em alguns momentos eu estava lendo nomes do teste em ingles (type, product, etc) e passando os para o código, mas outros momentos me peguei confuso com a utilização de ingles ou portugues (com algumas mensagens estando em portgues, outras em ingles.)
+
+---
