@@ -295,7 +295,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 ### Nível Entregue
 
 - [ ] Nível 1 (Básico)
-- [x] Nível 2 (Intermediário) -> nível 3 foi iniciado com a API REST, mas foi o item desse nível que pude finalizar.
+- [x] Nível 2 (Intermediário) -> nível 3 foi iniciado com a API REST, mas foi o único item desse nível que pude finalizar.
 - [ ] Nível 3 (Avançado)
 
 ### O que achei de trabalhar com Elixir
