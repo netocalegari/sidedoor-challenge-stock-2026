@@ -9,8 +9,9 @@ defmodule StockManagementWeb.Api.ProductController do
   end
 
   def show(conn, %{"id" => id}) do
-    product = StockManagement.Stock.get_product!(id)
-    render(conn, :show, product: product)
+    with {:ok, product} <- StockManagement.Stock.get_product(id) do
+      render(conn, :show, product: product)
+    end
   end
 
   def create(conn, product_params) do

@@ -41,6 +41,13 @@ defmodule StockManagement.Stock do
   """
   def get_product!(id), do: Repo.get!(Product, id)
 
+  def get_product(id) do
+    case Repo.get(Product, id) do
+      nil -> {:error, :not_found}
+      product -> {:ok, product}
+    end
+  end
+
   @doc """
   Creates a product.
 
