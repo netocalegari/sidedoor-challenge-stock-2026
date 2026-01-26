@@ -105,9 +105,9 @@ Escolha **pelo menos 2** das funcionalidades abaixo:
 
 #### 3.1 API REST
 
-- [ ] Criar endpoints JSON para produtos e movimentações
+- [x] Criar endpoints JSON para produtos e movimentações
 - [ ] Documentar os endpoints no README
-- [ ] Implementar respostas de erro padronizadas
+- [x] Implementar respostas de erro padronizadas
 
 #### 3.2 Testes Automatizados
 

@@ -6,6 +6,11 @@
         <.icon name="hero-plus" /> New Product
       </.button>
     </:actions>
+    <:actions>
+      <.button href={~p"/movements"}>
+         Movements
+      </.button>
+    </:actions>
   </.header>
 
   <.table id="products" rows={@products} row_click={&JS.navigate(~p"/products/#{&1}")}>
