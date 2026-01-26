@@ -298,12 +298,15 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 
 #### API Rest
 
+---
+
 ##### Products `(/api/products)`
 
-> Listar Produtos  
-> **GET** `/api/products`
+**Listar Produtos**
 
-**Resposta - 200 OK**
+**GET** `/api/products`
+
+> **Resposta - 200 OK**
 
 ```json
 {
@@ -319,10 +322,13 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-> Buscar produto por ID  
-> **GET** `api/products/:id`
+---
 
-**Resposta - 200 OK**
+**Buscar produto por ID**
+
+**GET** `api/products/:id`
+
+> **Resposta - 200 OK**
 
 ```json
 {
@@ -336,7 +342,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Erro - 404 Not Found**
+> **Erro - 404 Not Found**
 
 ```json
 {
@@ -346,9 +352,13 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-> Criar Produto  
-> **POST** `api/products`
-> **Body**
+---
+
+**Criar Produto**
+
+**POST** `api/products`
+
+**Body**
 
 ```json
 {
@@ -359,7 +369,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Resposta - 201 CREATED**
+> **Resposta - 201 CREATED**
 
 ```json
 {
@@ -373,7 +383,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Erro - 422 Unprocessable Entity**
+> **Erro - 422 Unprocessable Entity**
 
 ```json
 {
@@ -383,9 +393,13 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-> Atualizar Produto  
-> **PATCH** `api/products`
-> **Body**
+---
+
+**Atualizar Produto**
+
+**PATCH** `api/products`
+
+**Body**
 
 ```json
 {
@@ -393,7 +407,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Resposta - 200 OK**
+> **Resposta - 200 OK**
 
 ```json
 {
@@ -407,7 +421,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Erro - 404 Not Found**
+> **Erro - 404 Not Found**
 
 ```json
 {
@@ -417,7 +431,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Erro - 422 Unprocessable Entity**
+> **Erro - 422 Unprocessable Entity**
 
 ```json
 {
@@ -427,12 +441,15 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-> Deletar Produto  
-> **DELETE** `api/products`
+---
 
-**Resposta - 204 No Content**
+**Deletar Produto**
 
-**Erro - 404 Not Found**
+**DELETE** `api/products`
+
+> **Resposta - 204 No Content**
+
+> **Erro - 404 Not Found**
 
 ```json
 {
@@ -442,12 +459,15 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
+---
+
 ##### Moviments `(/api/movements)`
 
-> Listar Movements  
-> **GET** `/api/moviments`
+**Listar Movements**
 
-**Resposta - 200 OK**
+**GET** `/api/moviments`
+
+> **Resposta - 200 OK**
 
 ```json
 {
@@ -465,10 +485,11 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-> Buscar movimentos por ID  
-> **GET** `/api/moviments/:id`
+**Buscar movimentos por ID**
 
-**Resposta - 200 OK**
+**GET** `/api/moviments/:id`
+
+> **Resposta - 200 OK**
 
 ```json
 {
@@ -484,9 +505,21 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-> Criar Movement  
-> **POST** `api/movements`
-> **Body**
+> **Erro - 404 Not Found**
+
+```json
+{
+  "errors": {
+    "detail": "Not Found"
+  }
+}
+```
+
+**Criar Movement**
+
+**POST** `api/movements`
+
+**Body**
 
 ```json
 {
@@ -497,7 +530,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Resposta - 201 CREATED**
+> **Resposta - 201 CREATED**
 
 ```json
 {
@@ -511,7 +544,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Erro - 422 Unprocessable Entity**
+> **Erro - 422 Unprocessable Entity**
 
 ```json
 {
@@ -521,7 +554,7 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 }
 ```
 
-**Erro - 422 Unprocessable Entity**
+> **Erro - 422 Unprocessable Entity**
 
 ```json
 {
@@ -534,8 +567,8 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 ### Nível Entregue
 
 - [ ] Nível 1 (Básico)
-- [x] Nível 2 (Intermediário) -> nível 3 foi iniciado com a API REST, mas foi o único item desse nível que pude finalizar.
-- [ ] Nível 3 (Avançado)
+- [x] Nível 2 (Intermediário)
+- [ ] Nível 3 (Avançado) -> nível 3 foi iniciado com a API REST, mas foi o único item desse nível que pude finalizar.
 
 ### O que achei de trabalhar com Elixir
 
@@ -560,7 +593,3 @@ A aplicação pode ser acessada no navegador visitando [`localhost:4000`](http:/
 > Padronizaria melhor o código. Em alguns momentos eu estava lendo nomes do teste em ingles (type, product, etc) e passando os para o código, mas outros momentos me peguei confuso com a utilização de ingles ou portugues (com algumas mensagens estando em portgues, outras em ingles.)
 
 ---
-
-```
-
-```
