@@ -17,9 +17,9 @@ defmodule StockManagementWeb.Api.FallbackController do
 
   def call(conn, {:error, :insufficient_stock}) do
     conn
-    |> put_status(:bad_request)
+    |> put_status(:unprocessable_entity)
     |> put_view(StockManagementWeb.ErrorJSON)
-    |> render(:"400")
+    |> render(:"422")
   end
 
   def call(conn, {:error, :not_found}) do

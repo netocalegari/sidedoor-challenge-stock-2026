@@ -17,15 +17,15 @@ defmodule StockManagement.Stock.Product do
   def changeset(product, attrs) do
     product
     |> cast(attrs, [:name, :description, :quantity, :price, :active])
-    |> validate_required([:name, :quantity], message: "This field is required")
-    |> validate_length(:name, min: 3, message: "Name must be at least 3 characters long")
+    |> validate_required([:name, :quantity], message: "Campo [name, quantity] obrigatório")
+    |> validate_length(:name, min: 3, message: "Nome precisa conter ao menos 3 caracteres")
     |> validate_number(:quantity,
       greater_than_or_equal_to: 0,
-      message: "Quantity must be a non-negative number"
+      message: "Quantity precisa ser um número não negativo"
     )
     |> validate_number(:price,
       greater_than_or_equal_to: 0,
-      message: "Price must be a non-negative number"
+      message: "Price precisa ser um número não negativo"
     )
   end
 end
